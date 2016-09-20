@@ -18,8 +18,36 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse" id="navbar">
+   <div class="container-fluid">
+     <div class="navbar-header">
+       <a class="navbar-brand" href="#">AirBnB</a>
+     </div>
+     <ul class="nav navbar-nav">
+       <li class="active"><%= link_to 'HOME', root_path%></li>
+       <% if signed_in? %>
+       <li><%= link_to 'Sign out', sign_out_path, method: :delete %></li>
+       <%else%>
+       <li><%= link_to 'Sign in', sign_in_path %></li>
+       <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
+       <%end%>
+     </ul>
+   </div>
+  </nav>
 
-      <% if signed_in? %>
+
+
+
+
+
+
+
+
+
+
+
+
+     <!--  <% if signed_in? %>
       Signed in as: <%= current_user.email %>
       <%= button_to 'Sign out', sign_out_path, method: :delete %>
     <% else %>
@@ -27,7 +55,7 @@
       OR YOU CAN
       <%= link_to 'Sign In with Facebook', "/auth/facebook" %>
     <% end %>
-
+ -->
     <div id="flash">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
