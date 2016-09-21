@@ -1,8 +1,27 @@
-<section>
+
+
+<div class="video_container">
+    <h1><span>Rent unique places to stay from local hosts in 190+ countries.</span><br>Welcome <%=current_user.email if current_user != nil%></h1>
+          <video autoplay loop="loop" preload="auto" class="photo">
+             <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.mp4" type='video/mp4'>
+               <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.webm" type='video/webm'>
+          </video>
+</div>
+
+
+
+
+<div class= container-fluid>
+  <section>
     <div class="row" >
 
       <a href="/listings/new">Create a listing</a>
     </div>
+<% if current_user %>
+<%=link_to "My Profile", user_path(current_user.id)%>
+<%end%>
+  </section>
 
-</section>
+</div>
+
 

@@ -1,0 +1,9 @@
+<%= form_for @user do |form| %>
+    <%= render partial: '/users/form', object: form %>
+  <%= form.label :upload_picture %>
+  <%= form.file_field :avatars, multiple: true %>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+<%end%>

@@ -33,6 +33,12 @@ gem "figaro"
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+#Image uploader
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+
+# gem for Amazon image upload/store
+gem 'fog'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
