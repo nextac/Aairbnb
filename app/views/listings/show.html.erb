@@ -1,5 +1,8 @@
+
+
 <h1 >Listing Show page</h1>
 
+<%= image_tag (@listing.avatars[0].square.url) %>
 <%= @listing.title %>
 <br>
 <%= @listing.location %>
@@ -8,4 +11,10 @@
 <br>
 <%= @listing.nb_room %>
 <br>
+<%= @listing.user_id%>
+<br>
+
+  <%= link_to 'Edit', edit_listing_path(@listing.id)%>
+<!-- < %= link_to 'Delete', user_path(current_user.id), method : :delete %> -->
+  <%= link_to "delete", listing_path(@listing.id), method: :delete, data: { confirm: "You sure?" } %>
 
