@@ -1,0 +1,12 @@
+This is my New reservation page
+
+<!-- Nested routes implies the pointing to the specific url because it is not the default Url -->
+<%= form_for @reservation, url: listing_reservations_path do |form| %>
+    <%= render partial: '/reservations/form', object: form %>
+
+    <div class="submit-field">
+      <%= form.submit "Create Now", class: "btn btn-default"%>
+    </div>
+
+  <% end %>
+

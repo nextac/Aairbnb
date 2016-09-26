@@ -1,27 +1,67 @@
 
 
-<div class="video_container">
-    <h1><span>Rent unique places to stay from local hosts in 190+ countries.</span><br>Welcome <%=current_user.email if current_user != nil%></h1>
-          <video autoplay loop="loop" preload="auto" class="photo">
-             <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.mp4" type='video/mp4'>
-               <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.webm" type='video/webm'>
-          </video>
-</div>
-
-
-
-
 <div class= container-fluid>
-  <section>
-    <div class="row" >
 
-      <a href="/listings/new">Create a listing</a>
+<!-- SECTION : Video Module Homepage -->
+  <section>
+    <div class="video_container">
+        <h1><span>Rent unique places to stay from local hosts in 190+ countries.</span><br>Welcome <%=current_user.email if current_user != nil%></h1>
+              <video autoplay loop="loop" preload="auto" class="photo">
+                 <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.mp4" type='video/mp4'>
+                   <source src="https://a0.muscache.com/airbnb/static/P1-background-vid-compressed.webm" type='video/webm'>
+              </video>
     </div>
-<% if current_user %>
-<%=link_to "My Profile", user_path(current_user.id)%>
-<%end%>
+    <br>
   </section>
 
-</div>
+
+<!-- SECTION : Display -->
+  <section>
+  <br>
+    <div class="container">
+      <%@listings.each do |l|%>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div id= 'listing-location'><h4><%= l.location %></h4></div>
+
+              <div style="width: 100%; height: 270px; background: url(<%= l.avatars[0].square.url %>) no-repeat center; -webkit-background-size: cover; /* pour anciens Chrome et Safari */background-size: cover;;">
+              </div>
+            <br>
+            <div id= listing-photo-title>
+            <%= link_to "#{l.title}", listing_path(l.id) %>
+            </div>
+            <br>
+            <div id= listing-book-button_holder>
+              <%= form_for @reservation, url: listing_reservations_path(l) do |form| %>
+                <%= render partial: '/reservations/form', locals: {form: form, listing: l }%>
+              <% end %>
+            </div>
+        <!-- < %= link_to 'Delete', user_path(current_user.id), method : :delete %> -->
+          </div>
+      <%end%>
+    </div>
+  </section>
 
 
+
+
+
+
+
+        <a href="/listings/new">Create a listing</a>
+
+  <% if current_user %>
+  <%=link_to "My Profile", user_path(current_user.id)%>
+  <%end%>
+
+
+
+  <!-- !!!DAVID THis is a manual way to paginante our listings, but AJAX would make it better. -->
+
+  </div>
+  <div id=pagination-block>
+    <% (1..@total_pages).each do |page|%>
+      <%= link_to page, controller: "home", action: "index", page: page %> &nbsp;
+    <% end %>
+  </div>
+
+</div>  <!-- End of Container Fluid main page -->

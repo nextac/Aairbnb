@@ -13,4 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require multidatespickr
+//= require_self
+
+
+$(document).on('ready', function(){
+// DAVID -- this is to use tool tips on my forms
+$('input').each(function (i, e) {
+    var label;
+    switch ($(e).attr('name')) {
+        case 'listing[tag_list]':
+            label = 'Separate your tags with a comma';
+            break;
+        // case 'input-two':
+        //     label = 'This is input #2';
+        //     break;
+    }
+    $(e).tooltip({ 'trigger': 'focus', 'title': label });
+});
+})

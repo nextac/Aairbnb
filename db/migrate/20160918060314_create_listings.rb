@@ -1,11 +1,10 @@
 class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
-      t.string :title, null: false
-      t.string :location
-      t.string :description
-      t.float :price_per_night, null: false
-      t.string :photo
+      t.string  :title, null: false
+      t.string  :location
+      t.string  :description
+      t.float   :daily_rate, null: false
       t.integer :nb_room
       t.boolean :issmoker, default: false
       t.boolean :ispetfriendly, default: false
