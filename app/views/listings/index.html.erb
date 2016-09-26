@@ -1,7 +1,9 @@
 <%@listing.each do |l|%>
 <br>
 <%= link_to "#{l.title}", listing_path(l.id) %><br>
+    <%if l.avatars.present? %>
         <%= image_tag (l.avatars[0].square.url) %><br>
+    <%end%>
         <%= l.location %>
         <br>
         <%= l.description %>

@@ -1,5 +1,5 @@
 class Listing < ActiveRecord::Base
-
+  serialize :unavdates
   belongs_to :user
   has_many :reservations
   has_many :unavdates

@@ -25,7 +25,7 @@ class ListingsController < ApplicationController
   def create
     @listing = current_user.listings.new(listing_params)
       if @listing.save
-        @listing.unavdates.new(params)
+
       # I want o go to my listing show page
         redirect_to listings_path # This is the way to pass in an id
       else

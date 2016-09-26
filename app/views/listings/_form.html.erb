@@ -63,27 +63,27 @@
 
 <!-- DAVID : Here I implement  a field which has to be linked to another form IE: fields are linked to Unavdates table and not the listing table.  There are two ways of doing it: nested forms or custom input field.  In this case it is input field -->
 
-<!--
-<div class="form-group">
-    < %= form.label :start_date %>
-    < script>
+
+ <div class="form-group">
+  <%= form.label :When_would_you_leave? %>
+    <script>
       $( function() {
-        $( "#unav_date_picker_start" ).datepicker({ dateFormat: 'dd-mm-yy' }).val();;
+      $( "#resa_datepicker_end-<%=@listing.id %>" ).datepicker({
+      dateFormat: 'dd-mm-yy',
+      altField: "#resa_datepicker_end_input",
+      altFormat: "dd-mm-yy" }).val();
       } );
     </script>
-
-   <input type="text" id="unav_date_picker_start" name="unavdate[start_date]">
-
-    <!- < %= form.text_field :start_date, class: "form-control", id: "datepicker" %> -->
-<!--
-</div> -->
+    <div id="resa_datepicker_end-<%=@listing.id %>"></div>
+    <%= form.hidden_field :unavdate, class: "form-control", id: "resa_datepicker_end_input" %>
+  </div>
 
 
 <!-- var today = new Date();
 $('#disable-dates').multiDatesPicker({
   addDisabledDates: [today.setDate(1), today.setDate(3)]
-}); -->
-
+});
+ -->
 
 
 <!-- </form> -->

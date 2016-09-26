@@ -59,3 +59,15 @@ photo {
 #pagination-block{
   text-align: center;
 }
+
+
+
+.photo {
+ position: absolute;
+ object-fit: contain;
+ z-index: -5;
+ bottom: 0px;
+ left: 0px;
+ width: 100%;
+
+}
