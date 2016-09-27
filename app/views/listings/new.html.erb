@@ -2,9 +2,12 @@ this is a form to create a new listing
 see partial form
 <%= form_for @listing do |form| %>
     <%= render partial: '/listings/form', object: form %>
+<!--     <%= render partial: '/unavdates/form' %> -->
+
+    <br>
 
     <div class="submit-field">
-      <%= form.submit "Create Now", class: "btn btn-default"%>
+      <%= form.submit "Create your listing", class: "btn btn-default"%>
     </div>
 
     <div class="other-links">

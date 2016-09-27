@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
-
   root "home#index"
 
   get 'home/index'
 
+  get 'tags/:tag', to: 'listings#index', as: :tag
+
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   resources :users, only: [:show, :edit, :update, :destroy]
-  resources :listings
+  resources :listings do
+    resources :reservations, only: [:new, :create, :destroy]
+  end
+  resources :reservations, only: []
+
+
+  # resources :reservations, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

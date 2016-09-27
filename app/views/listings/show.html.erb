@@ -2,7 +2,7 @@
 
 <h1 >Listing Show page</h1>
 
-<%= image_tag (@listing.avatars[0].square.url) %>
+<%= image_tag (@listing.avatars[0].square.url) %><br>
 <%= @listing.title %>
 <br>
 <%= @listing.location %>
@@ -11,10 +11,40 @@
 <br>
 <%= @listing.nb_room %>
 <br>
-<%= @listing.user_id%>
+<%= @listing.user_id %>
 <br>
 
-  <%= link_to 'Edit', edit_listing_path(@listing.id)%>
+<% @listing.tag_list.each do |tag|%>
+
+  <a href="/tags/<%= tag %>"> #<%= tag %></a>
+
+<% end %>
+
+<br>
+
+<%= form_for [@listing, @reservation], url: listing_reservations_path(@listing.id) do |form| %>
+    <%= render partial: '/reservations/form', locals: {form: form ,listing: @listing }%>
+
+
+
+
+
+  <% end %>
+
+<div class="btn-group">
+  <%= link_to 'Edit', edit_listing_path(@listing.id), class: "btn btn-primary"%>
 <!-- < %= link_to 'Delete', user_path(current_user.id), method : :delete %> -->
-  <%= link_to "delete", listing_path(@listing.id), method: :delete, data: { confirm: "You sure?" } %>
+  <%= link_to "delete", listing_path(@listing.id), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-primary" %>
+</div>
+<!--
+<div class="btn-group">
+  < %= link_to edit_listing_path(@listing.id) do %>
+    <button type="button" class="btn btn-primary">Edit</button>
+  < % end %>
+< %= link_to 'Delete', user_path(current_user.id), method : :delete %>
+  < %= link_to listing_path(@listing.id), method: :delete, data: { confirm: "You sure?" } do %>
+    <button type="button" class="btn btn-primary">Delete</button>
+  < % end %>
+</div>
+ -->
 

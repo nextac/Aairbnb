@@ -1,0 +1,107 @@
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#reservation-<%= listing.id %>">Book it now!</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="reservation-<%= listing.id %>" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Hello <%=current_user.email if current_user%>, what are your dates?</h4>
+        </div>
+        <div class="modal-body">
+          <div class= "parent-box">
+            <div class="form-group">
+              <%= form.label :When_would_you_arrive? %>
+                <script>
+                // var disabledates =
+                //   function DisableSpecificDates(date) {
+                //     var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+                //     return [disableddates.indexOf(string) == -1];
+                //   }
+                  $(function() {
+                    $("#resa_datepicker_start-<%= listing.id %>").datepicker({
+                      // beforeShowDay: DisableSpecificDates
+                      dateFormat: 'dd-mm-yy',
+                      altField: "#resa_datepicker_start_input",
+                      altFormat: "dd-mm-yy" }).val();
+                  });
+                </script>
+     <!--  THIS IS THE HTML EQUIVALENT OF THE RAILS BELOW
+     <input type="text" id="datepicker" name="reservation[start_date]"> -->
+                <div id="resa_datepicker_start-<%= listing.id %>"></div>
+                <%= form.hidden_field :start_date, class: "form-control", id: "resa_datepicker_start_input" %>
+
+            </div>
+
+            <div class="form-group">
+                <%= form.label :When_would_you_leave? %>
+                <script>
+                // var disabledates = < %=l.unavdate%>
+                  $(function() {
+                    $("#resa_datepicker_end-<%= listing.id %>" ).datepicker({
+                      dateFormat: 'dd-mm-yy',
+                      altField: "#resa_datepicker_end_input",
+                      altFormat: "dd-mm-yy" }).val();
+                  } );
+                </script>
+                <div id="resa_datepicker_end-<%= listing.id %>"></div>
+                <%= form.hidden_field :end_date, class: "form-control", id: "resa_datepicker_end_input" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :How_many_people_are_staying?%>
+            <!-- <label for="sel1">Select list:</label> -->
+            <%= form.select :guest_count, options_for_select([ 1, 2, 3, 4 ], 1), class: "form-control", id: "guest_count" %>
+          </div>
+
+
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <div class="submit-field">
+            <%= form.submit "Create Now", class: "btn btn-default"%>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-group">
+    <  %= form.label :confirmation_status %>
+    <  %= form.check_box :confirmation_status, class: "form-control" %>
+</div> -->
+<!--
+
+
+<div class="form-group">
+    < %= form.label :guest_count %>
+    < %= form.number_field :guest_count, class: "form-control" %>
+</div>
+
+
+< %= @listing.daily_rate %>
+<div class="form-group">
+    < % = form.label :daily_rate %>
+    < %= form.number_field :daily_rate, class: "form-control" %>
+</div>
+
+<! <div class="form-group">
+    <  %= form.label :total %>
+    <  %= form.number_field :total, class: "form-control"%>
+</div> -->

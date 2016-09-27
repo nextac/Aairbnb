@@ -37,8 +37,14 @@ gem 'omniauth-facebook'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
+#gem for tagging
+gem 'acts-as-taggable-on', '~> 4.0'
+
 # gem for Amazon image upload/store
 gem 'fog'
+
+#active job
+gem 'sidekiq'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,4 +1,22 @@
 <%@listing.each do |l|%>
 <br>
-LOCATION: <%=l.location %>
+<%= link_to "#{l.title}", listing_path(l.id) %><br>
+    <%if l.avatars.present? %>
+        <%= image_tag (l.avatars[0].square.url) %><br>
+    <%end%>
+        <%= l.location %>
+        <br>
+        <%= l.description %>
+        <br>
+        <%= l.description %>
+        <br>
+        <%= l.nb_room %>
+        <br>
+        <%= l.user_id %>
+
+<%= link_to 'Book', new_listing_reservation_path(l.id)%>
 <%end%>
+
+<h2>Modal Example</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>

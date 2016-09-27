@@ -17,13 +17,8 @@
   </div>
 
   <div class="form-group">
-    <%= form.label "Price per night" %>
-    <%= form.text_field :price_per_night, class: "form-control", id: "price_per_night" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label "Upload your photos" %>
-    <%= form.text_field :photo, class: "form-control", id: "photo" %>
+    <%= form.label "Daily rate" %>
+    <%= form.text_field :daily_rate, class: "form-control", id: "price_per_night" %>
   </div>
 
   <div class="form-group">
@@ -61,17 +56,35 @@
     <%= form.check_box :hasswimmingpool, class: "form-control", id: "hasswimmingpool" %>
   </div>
 
+  <div class = "form-group" >
+  <%= form.label :tag_list %>
+  <%= form.text_field :tag_list %>
+  </div>
+
+<!-- DAVID : Here I implement  a field which has to be linked to another form IE: fields are linked to Unavdates table and not the listing table.  There are two ways of doing it: nested forms or custom input field.  In this case it is input field -->
 
 
+ <div class="form-group">
+  <%=form.label :Unavailable_dates %>
+    <script>
+      $(function() {
+      $("#resa_datepicker_end-<%=@listing.id %>" ).multiDatesPicker({
+      dateFormat: 'dd-mm-yy',
+      numberOfMonths: [3,4],
+      altField: "#resa_datepicker_end_input",
+      altFormat: "dd-mm-yy" }).val();
+      });
+    </script>
+    <div id="resa_datepicker_end-<%=@listing.id %>"></div>
+    <%=form.hidden_field :unavdate, class: "form-control", id: "resa_datepicker_end_input", :multiple => true %>
+  </div>
 
 
-
-
-
-
-
-
-
+<!-- var today = new Date();
+$('#disable-dates').multiDatesPicker({
+  addDisabledDates: [today.setDate(1), today.setDate(3)]
+});
+ -->
 
 
 <!-- </form> -->
