@@ -10,20 +10,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Hello <%=current_user[:email]%>, what are your dates?</h4>
+            <h4 class="modal-title">Hello <%=current_user.email if current_user%>, what are your dates?</h4>
         </div>
         <div class="modal-body">
           <div class= "parent-box">
             <div class="form-group">
               <%= form.label :When_would_you_arrive? %>
                 <script>
-                  $( function() {
-                    $( "#resa_datepicker_start-<%= listing.id %>" ).datepicker({ dateFormat: 'dd-mm-yy',
+                // var disabledates =
+                //   function DisableSpecificDates(date) {
+                //     var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
+                //     return [disableddates.indexOf(string) == -1];
+                //   }
+                  $(function() {
+                    $("#resa_datepicker_start-<%= listing.id %>").datepicker({
+                      // beforeShowDay: DisableSpecificDates
+                      dateFormat: 'dd-mm-yy',
                       altField: "#resa_datepicker_start_input",
                       altFormat: "dd-mm-yy" }).val();
-                  } );
+                  });
                 </script>
-
      <!--  THIS IS THE HTML EQUIVALENT OF THE RAILS BELOW
      <input type="text" id="datepicker" name="reservation[start_date]"> -->
                 <div id="resa_datepicker_start-<%= listing.id %>"></div>
@@ -34,8 +40,9 @@
             <div class="form-group">
                 <%= form.label :When_would_you_leave? %>
                 <script>
-                  $( function() {
-                    $( "#resa_datepicker_end-<%= listing.id %>" ).datepicker({
+                // var disabledates = < %=l.unavdate%>
+                  $(function() {
+                    $("#resa_datepicker_end-<%= listing.id %>" ).datepicker({
                       dateFormat: 'dd-mm-yy',
                       altField: "#resa_datepicker_end_input",
                       altFormat: "dd-mm-yy" }).val();

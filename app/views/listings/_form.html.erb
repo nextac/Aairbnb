@@ -65,17 +65,18 @@
 
 
  <div class="form-group">
-  <%= form.label :When_would_you_leave? %>
+  <%=form.label :Unavailable_dates %>
     <script>
-      $( function() {
-      $( "#resa_datepicker_end-<%=@listing.id %>" ).datepicker({
+      $(function() {
+      $("#resa_datepicker_end-<%=@listing.id %>" ).multiDatesPicker({
       dateFormat: 'dd-mm-yy',
+      numberOfMonths: [3,4],
       altField: "#resa_datepicker_end_input",
       altFormat: "dd-mm-yy" }).val();
-      } );
+      });
     </script>
     <div id="resa_datepicker_end-<%=@listing.id %>"></div>
-    <%= form.hidden_field :unavdate, class: "form-control", id: "resa_datepicker_end_input" %>
+    <%=form.hidden_field :unavdate, class: "form-control", id: "resa_datepicker_end_input", :multiple => true %>
   </div>
 
 
