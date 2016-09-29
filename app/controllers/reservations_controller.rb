@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 
-  before_action :set_reservation, only: [ :destroy]
+  before_action :set_reservation, only: [ :destroy, :show]
 
 
   def new
@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
 
 
   # def create
-  #   # byebug
+  #
   #   listing = Listing.find(params[:listing_id])
   #   reservation = current_user.reservations.new(reservation_params)
 
@@ -29,12 +29,14 @@ class ReservationsController < ApplicationController
     @reservation = current_user.reservations.new(reservation_params)
     booked_dates = @listing.booked_dates
     @host = "david.nextacademy@gmail.com"
+
       if @reservation.overlapping_dates(booked_dates).empty? && @reservation.save
         #this checks if the booked_dates are empty, if is empty then it will create
         #a new reservation
         #once im able to create a new reservation, i would need to add my listing_id
         #into my reservation as i only have user_id for now (current_user.reservations)
         @reservation.update(listing_id: @listing.id)
+        @reservation.update(total: @reservation.total_calculation)
         # ReservationMailer to send a notification email after save
         #
         @host = "david.nextacademy@gmail.com"
@@ -44,16 +46,18 @@ class ReservationsController < ApplicationController
           #ReservationJob.perform_now("david.nextacademy@gmail.com", "david.nextacademy@gmail.com", 1, 1)
 
           # IF I WANT TO USE REDIS AND SIDEKIQ THEN USE line below
-          ReservationJob.perform_now(current_user.email, @host, @reservation.listing.id, @reservation.id)
+          # ReservationJob.perform_now(current_user.email, @host, @reservation.listing.id, @reservation.id)
            # ReservationMailer.notification_email(current_user.email, @host, @reservation.listing.id, @reservation.id).deliver_later
           # call out reservation job to perform the mail sending task after @reservation is successfully saved
-            redirect_to root_path
+            redirect_to listing_reservation_path(@listing.id, @reservation.id)
         else
           flash[:notice] = "dates are no available on #{@reservation.overlapping_dates(booked_dates).join(", ")}"
           redirect_to root_path
         end
   end
 
+  def show
+  end
 
 
   def destroy
