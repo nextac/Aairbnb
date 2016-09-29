@@ -1,4 +1,4 @@
-<%@listing.each do |l|%>
+<%@listings.each do |l|%>
 <br>
 <%= link_to "#{l.title}", listing_path(l.id) %><br>
     <%if l.avatars.present? %>
